@@ -43,11 +43,17 @@ bash
 Copy
 Edit
 .
+
 ├── ansible-users/
+
 │   ├── dbserver_users.yml         # Utilisateurs pour le serveur de base de données
+
 │   ├── webserver_users.yml        # Utilisateurs pour le serveur web
+
 │   ├── manage_users.yml           # Playbook général de gestion des utilisateurs
+
 │   └── inventory                  # Fichier d'inventaire listant les hôtes cibles
+
 ├── README.md                      # Documentation du projet
 
 #Exécuter le playbook :

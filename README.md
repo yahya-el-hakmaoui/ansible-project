@@ -1,4 +1,4 @@
-# ============ GESTION DES UTILISATEURS AVEC ANSIBLE ============
+# GESTION DES UTILISATEURS AVEC ANSIBLE
 
 ## Description
 

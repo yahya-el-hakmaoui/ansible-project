@@ -1,44 +1,41 @@
-============ GESTION DES UTILISATEURS AVEC ANSIBLE ============
-#Description
+# ============ GESTION DES UTILISATEURS AVEC ANSIBLE ============
+
+## Description
 
 Ce projet permet d’automatiser la gestion des utilisateurs (ajout, suppression, configuration SSH) sur des serveurs distants grâce à Ansible. Il facilite l’administration système en centralisant les opérations courantes liées aux comptes utilisateurs.
 
-#Objectifs
+---
 
-Automatiser la création, suppression et mise à jour des utilisateurs.
+## Objectifs
 
-Assurer un accès SSH sécurisé avec des clés publiques.
+- Automatiser la création, suppression et mise à jour des utilisateurs.
+- Assurer un accès SSH sécurisé avec des clés publiques.
+- Faciliter la maintenance des utilisateurs via un playbook Ansible réutilisable.
 
-Faciliter la maintenance des utilisateurs via un playbook Ansible réutilisable.
+---
 
-#Fonctionnalités
+## Fonctionnalités
 
-Ajout automatique de comptes utilisateurs.
+- Ajout automatique de comptes utilisateurs.
+- Suppression ou désactivation des comptes existants.
+- Déploiement des clés SSH sans mot de passe.
+- Support de plusieurs serveurs (webserver, dbserver).
+- Gestion simple via des fichiers YAML.
+- Personnalisation des groupes, shell, et répertoires home.
 
-Suppression ou désactivation des comptes existants.
+---
 
-Déploiement des clés SSH sans mot de passe.
+## Prérequis
 
-Support de plusieurs serveurs (webserver, dbserver).
+- Ansible installé sur la machine de gestion :
 
-Gestion simple via des fichiers YAML.
-
-Personnalisation des groupes, shell, et répertoires home.
-
-#Prérequis
-
-Ansible installé sur la machine de gestion :
-
-bash
-Copy
-Edit
-sudo apt install ansible
+  ```bash
+  sudo apt install ansible
 Accès SSH fonctionnel vers les serveurs cibles (avec clé privée configurée).
 
 Python installé sur les hôtes distants (prérequis d’Ansible).
 
-#Arborescence du Projet
-
+## Arborescence du Projet
 bash
 Copy
 Edit
@@ -56,19 +53,16 @@ Edit
 
 ├── README.md                      # Documentation du projet
 
-#Exécuter le playbook :
-
+## Exécuter le Playbook
 bash
 Copy
 Edit
 ansible-playbook ansible-users/manage_users.yml -i ansible-users/inventory -e role_users_file=webserver_users.yml
-Auteur
+## Auteur
 Nom : yahya-el-hakmaoui
 
 Email : yahyaelhakm@gmail.com
 
-GitHub : https://github.com/tonpseudo
-
-
-#Contributions
-Les contributions sont les bienvenues ! N'hésitez pas à forker le projet, créer des issues ou proposer des pull requests.
+## Contributions
+Les contributions sont les bienvenues !
+N'hésitez pas à forker le projet, créer des issues ou proposer des pull requests.

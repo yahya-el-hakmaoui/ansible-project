@@ -1,0 +1,98 @@
+---
+- name: Gérer les utilisateurs sur les serveurs distants
+  hosts: webserver
+  become: yes
+  vars_files:
+    - webserver_users.yml
+
+  vars:
+    # Format de hachage crypt (SHA-512)
+    password_algo: "sha512_crypt"
+
+  pre_tasks:
+    - name: Générer les mots de passe hashés
+      ansible.builtin.set_fact:
+        users: "{{ users | map('combine', [ {'password_hash': (item.password | password_hash(password_algo))} ]) | list }}"
+      loop: "{{ users }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+  tasks:
+
+    - name: Gérer les utilisateurs selon la data
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        state: "{{ item.state }}"
+        shell: /bin/bash
+        password: "{{ item.password_hash }}"
+      loop: "{{ users }}"
+      when: item.state in ['present', 'absent']
+
+    - name: Créer le dossier .ssh si l'utilisateur doit être présent
+      ansible.builtin.file:
+        path: "/home/{{ item.name }}/.ssh"
+        state: directory
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: '0700'
+      loop: "{{ users }}"
+      when: item.state == 'present'
+
+    - name: Ajouter la clé SSH publique dans authorized_keys
+      ansible.builtin.copy:
+        content: "{{ item.ssh_key }}"
+        dest: "/home/{{ item.name }}/.ssh/authorized_keys"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: '0600'
+      loop: "{{ users }}"
+      when: item.state == 'present'
+
+- name: Gérer les utilisateurs sur les serveurs distants
+  hosts: dbserver
+  become: yes
+  vars_files:
+    - dbserver_users.yml
+
+  vars:
+    # Format de hachage crypt (SHA-512)
+    password_algo: "sha512_crypt"
+
+  pre_tasks:
+    - name: Générer les mots de passe hashés
+      ansible.builtin.set_fact:
+        users: "{{ users | map('combine', [ {'password_hash': (item.password | password_hash(password_algo))} ]) | list }}"
+      loop: "{{ users }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+  tasks:
+
+    - name: Gérer les utilisateurs selon la data
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        state: "{{ item.state }}"
+        shell: /bin/bash
+        password: "{{ item.password_hash }}"
+      loop: "{{ users }}"
+      when: item.state in ['present', 'absent']
+
+    - name: Créer le dossier .ssh si l'utilisateur doit être présent
+      ansible.builtin.file:
+        path: "/home/{{ item.name }}/.ssh"
+        state: directory
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: '0700'
+      loop: "{{ users }}"
+      when: item.state == 'present'
+
+    - name: Ajouter la clé SSH publique dans authorized_keys
+      ansible.builtin.copy:
+        content: "{{ item.ssh_key }}"
+        dest: "/home/{{ item.name }}/.ssh/authorized_keys"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: '0600'
+      loop: "{{ users }}"
+      when: item.state == 'present'

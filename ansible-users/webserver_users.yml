@@ -1,0 +1,25 @@
+users:
+  - name: alice
+    state: present
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaliceKey123"
+    password: "alicepass"
+
+  - name: bob
+    state: absent
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbobKey456"
+    password: "bobpass"
+
+  - name: charlie
+    state: present
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDcharlieKey789"
+    password: "charliepass"
+
+  - name: diana
+    state: present
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdianaKey000"
+    password: "dianapass"
+
+  - name: edward
+    state: absent
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDedwardKey321"
+    password: "edwardpass"

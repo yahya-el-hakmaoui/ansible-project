@@ -1,0 +1,6 @@
+
+[webserver]
+hote1 ansible_host=10.106.0.2 ansible_user=hote-1 ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+[dbserver]
+hote2 ansible_host=10.106.0.3 ansible_user=hote-2 ansible_ssh_private_key_file=~/.ssh/id_rsa

@@ -1,0 +1,25 @@
+users:
+  - name: fiona
+    state: present
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfionaKey654"
+    password: "fionapass"
+
+  - name: george
+    state: present
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDgeorgeKey987"
+    password: "georgepass"
+
+  - name: helen
+    state: absent
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhelenKeyabc"
+    password: "helenpass"
+
+  - name: ian
+    state: present
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDianKeyxyz"
+    password: "ianpass"
+
+  - name: julia
+    state: present
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDjuliaKey456"
+    password: "juliapass"
